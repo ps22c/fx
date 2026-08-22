@@ -131,7 +131,7 @@ name = "Fx"
 message = 'hello'
 ```
 
-Common escape sequences include `\\n`, `\\r`, `\\t`, `\\a`, `\\b`, `\\f`, and `\\v`.
+Common escape sequences include `\n`, `\r`, `\t`, `\a`, `\b`, `\f`, and `\v`.
 
 ### Statements and separators
 
