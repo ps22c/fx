@@ -6837,11 +6837,11 @@ const char*ext=NULL;
 if(strstr(modname,".dll")||strstr(modname,".so")||
 strstr(modname,".dylib")||strstr(modname,".DLL")||
 strstr(modname,".SO")||strstr(modname,".DYLIB"))
-return fxL_error(L,"import only supports .fxs modules; native DLL/SO modules are not supported");
-if(len>=4&&strcmp(modname+len-4,".fxs")==0)
-ext=".fxs";
+return fxL_error(L,"import only supports .fxls modules; native DLL/SO modules are not supported");
+if(len>=4&&strcmp(modname+len-4,".fxls")==0)
+ext=".fxls";
 if(ext==NULL){
-if(sizeof(fullname)<=snprintf(fullname,sizeof(fullname),"%s.fxs",modname))
+if(sizeof(fullname)<=snprintf(fullname,sizeof(fullname),"%s.fxls",modname))
 return fxL_error(L,"module path too long: %s",modname);
 }
 else{
