@@ -1,0 +1,14 @@
+Third-Party Notice
+
+LuaJIT minilua.c
+
+The Fx VM and parser were based on the self-contained minilua.c host/compiler
+from LuaJIT:
+
+https://github.com/LuaJIT/LuaJIT/blob/master/src/host/minilua.c
+https://github.com/LuaJIT/LuaJIT
+
+LuaJIT and the original minilua.c code retain their original copyright and
+license terms. The applicable LuaJIT license is available in the LuaJIT
+repository. Redistributions of portions derived from LuaJIT must preserve the
+upstream copyright and license notices.
