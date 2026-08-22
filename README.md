@@ -322,7 +322,7 @@ object:method()
 ```fxs
 if score >= 10 then
     print("high")
-elseif score >= 5 then
+elif score >= 5 then
     print("medium")
 else
     print("low")
