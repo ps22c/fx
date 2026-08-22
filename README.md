@@ -44,7 +44,7 @@ gcc -std=c99 -O2 fx.c -lm -o fx.exe
 Run a script with:
 
 ```powershell
-.\fx.exe hello.fxs
+.\fx.exe hello.fxls
 ```
 
 ### Windows with Tiny C Compiler (tcc)
@@ -59,14 +59,14 @@ tcc -std=c99 -O2 fx.c -lm -o fx.exe
 The resulting `fx.exe` can be run the same way:
 
 ```powershell
-.\fx.exe hello.fxs
+.\fx.exe hello.fxls
 ```
 
 ### Linux or macOS
 
 ```sh
 gcc -std=c99 -O2 fx.c -lm -o fx
-./fx hello.fxs
+./fx hello.fxls
 ```
 
 `-lm` links the C math library used by the `math` module.
@@ -79,7 +79,7 @@ On Ubuntu, install the build tools and compile with GCC:
 sudo apt-get update
 sudo apt-get install build-essential
 gcc -std=c99 -O2 fx.c -lm -o fx
-./fx hello.fxs
+./fx hello.fxls
 ```
 
 If you would rather use **tcc** on Ubuntu:
@@ -87,7 +87,7 @@ If you would rather use **tcc** on Ubuntu:
 ```sh
 sudo apt-get install tcc
 tcc -std=c99 -O2 fx.c -lm -o fx
-./fx hello.fxs
+./fx hello.fxls
 ```
 
 The program accepts the script path as its first argument. Additional command
@@ -97,7 +97,7 @@ If no script path is supplied, the executable exits after initializing the VM.
 
 ## A First Program
 
-```fxs
+```fxls
 print("Hello from Fx")
 
 x: number = 1
@@ -117,7 +117,7 @@ Hello from Fx
 
 A semicolon starts a comment that continues to the end of the line:
 
-```fxs
+```fxls
 ; this is a comment
 print("hello") ; trailing comment
 ```
@@ -126,7 +126,7 @@ print("hello") ; trailing comment
 
 Single-quoted and double-quoted strings are supported:
 
-```fxs
+```fxls
 name = "Fx"
 message = 'hello'
 ```
@@ -157,7 +157,7 @@ Fx v0.1 has these built-in type annotations:
 
 Examples:
 
-```fxs
+```fxls
 count: number = 10
 name: string = "Ada"
 enabled: boolean = true
@@ -170,7 +170,7 @@ expected and actual types. `any` and unknown expression types are accepted.
 
 Boolean values:
 
-```fxs
+```fxls
 ready = true
 missing = false
 empty = nil
@@ -182,27 +182,27 @@ Numbers are represented as floating-point values and support decimal literals.
 
 Global assignment:
 
-```fxs
+```fxls
 x = 10
 x = x + 2
 ```
 
 Local variables:
 
-```fxs
+```fxls
 local total: number = 0
 local label = "total"
 ```
 
 Multiple assignment and declarations are supported by the parser:
 
-```fxs
+```fxls
 local first, second = 1, 2
 ```
 
 Member and indexed assignment:
 
-```fxs
+```fxls
 person = { name = "Ada", age = 36 }
 person.age = 37
 person["name"] = "Grace"
@@ -245,7 +245,7 @@ not logical negation
 
 Concatenation example:
 
-```fxs
+```fxls
 x = "Point " .. 4 .. ", " .. 3
 print(x)
 ```
@@ -256,14 +256,14 @@ print(x)
 The right-hand side is normally a function or a member expression that
 resolves to a function.
 
-```fxs
+```fxls
 1 |> print
 1 |> math.cos |> math.sin |> math.tan |> print
 ```
 
 This is equivalent in intent to:
 
-```fxs
+```fxls
 print(1)
 print(math.tan(math.sin(math.cos(1))))
 ```
@@ -274,7 +274,7 @@ The pipeline is especially useful for readable data transformations.
 
 The keyword `fun` declares a named function:
 
-```fxs
+```fxls
 fun add(a: number, b: number): number
     return a + b
 end
@@ -284,7 +284,7 @@ print(add(2, 3))
 
 Functions can also be anonymous:
 
-```fxs
+```fxls
 local twice = fun(value: number): number
     return value * 2
 end
@@ -294,7 +294,7 @@ print(twice(5))
 
 Parameter and return annotations are optional:
 
-```fxs
+```fxls
 fun greet(name)
     return "Hello, " .. name
 end
@@ -302,7 +302,7 @@ end
 
 A function may use varargs:
 
-```fxs
+```fxls
 fun show(...)
     print(...)
 end
@@ -310,7 +310,7 @@ end
 
 Member-call syntax passes the receiver as `self`:
 
-```fxs
+```fxls
 object = { value = 4 }
 object:method()
 ```
@@ -319,7 +319,7 @@ object:method()
 
 ### If
 
-```fxs
+```fxls
 if score >= 10 then
     print("high")
 elif score >= 5 then
@@ -331,7 +331,7 @@ end
 
 ### While
 
-```fxs
+```fxls
 local i = 0
 while i < 3 do
     print(i)
@@ -341,7 +341,7 @@ end
 
 ### Repeat
 
-```fxs
+```fxls
 local value = 0
 repeat
     value = value + 1
@@ -350,7 +350,7 @@ until value >= 3
 
 ### Numeric for
 
-```fxs
+```fxls
 for i = 1, 5, 1 do
     print(i)
 end
@@ -362,7 +362,7 @@ The step is optional and defaults to `1`.
 
 The VM also supports the Lua-style iterator form:
 
-```fxs
+```fxls
 for key, value in pairs(object) do
     print(key, value)
 end
@@ -370,7 +370,7 @@ end
 
 ### Break
 
-```fxs
+```fxls
 while true do
     break
 end
@@ -380,7 +380,7 @@ end
 
 Object literals use braces:
 
-```fxs
+```fxls
 user = {
     name = "Ada",
     age = 36
@@ -392,7 +392,7 @@ print(user["age"])
 
 Objects can contain positional values as well as named fields:
 
-```fxs
+```fxls
 values = { 10, 20, 30 }
 print(values[1])
 ```
@@ -401,7 +401,7 @@ print(values[1])
 
 `switch` evaluates a subject and provides `case` and `default` blocks:
 
-```fxs
+```fxls
 switch value
     case 1
         print("one")
@@ -423,7 +423,7 @@ provide a separate `break` requirement between cases.
 `match` is an expression. Each pattern is followed by `:` and its result;
 `::` introduces the default result:
 
-```fxs
+```fxls
 label = match value
     1: "one"
     2: "two"
@@ -454,7 +454,7 @@ Available global functions include:
 | --- | --- |
 | `assert(value, message)` | Raise an error when a value is false |
 | `error(message)` | Raise a runtime error |
-| `import(name)` | Load and execute a `.fxs` module |
+| `import(name)` | Load and execute a `.fxls` module |
 | `require(name)` | Alias of `import` |
 | `loadfile(path)` | Load a file as a function |
 | `loadstring(source)` | Compile source text as a function |
@@ -474,7 +474,7 @@ Available global functions include:
 
 The I/O library includes:
 
-```fxs
+```fxls
 io.write("hello", " ", "world")
 io.flush()
 ```
@@ -489,7 +489,7 @@ The standard output and input handles are available as `io.stdout` and
 
 Available functions include:
 
-```fxs
+```fxls
 string.byte(text)
 string.char(65)
 string.find(text, pattern)
@@ -510,7 +510,7 @@ available.
 
 Fx v0.1 currently exposes:
 
-```fxs
+```fxls
 math.cos(value)
 math.sin(value)
 math.tan(value)
@@ -526,17 +526,17 @@ portability is not critical.
 
 ## Modules
 
-A module is a `.fxs` file loaded by name:
+A module is a `.fxls` file loaded by name:
 
-```fxs
+```fxls
 import("math_helpers")
 ```
 
-The runtime resolves the module as `math_helpers.fxs` when no extension is
-provided. An explicit `.fxs` name is also accepted:
+The runtime resolves the module as `math_helpers.fxls` when no extension is
+provided. An explicit `.fxls` name is also accepted:
 
-```fxs
-require("math_helpers.fxs")
+```fxls
+require("math_helpers.fxls")
 ```
 
 Modules execute in the current VM environment. v0.1 does not include a module
@@ -548,7 +548,7 @@ Errors are reported on standard error with the source name and line when the
 parser can provide them:
 
 ```text
-Error: hello.fxs:3: unexpected symbol
+Error: hello.fxls:3: unexpected symbol
 ```
 
 Typical causes include:
@@ -592,7 +592,7 @@ upstream licensing information.
 
 ```text
 fx.c       VM, parser, runtime, standard libraries, and CLI
-hello.fxs  Fx source script
+hello.fxls  Fx source script
 README.md  This documentation
 ```
 
