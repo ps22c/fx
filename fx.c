@@ -4448,7 +4448,7 @@ else{
 expdesc pattern;
 expr(ls,&pattern);
 checknext(ls,':');
-skiplist=condjump(fs,OP_EQ,1,subjectreg,fxK_exp2RK(fs,&pattern));
+skiplist=condjump(fs,OP_EQ,0,subjectreg,fxK_exp2RK(fs,&pattern));
 }
 expr(ls,&value);
 fxK_exp2anyreg(fs,&value);
